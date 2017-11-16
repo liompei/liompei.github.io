@@ -280,6 +280,7 @@ post_copyright:
 mobile_layout_economy: false
 
 # Android Chrome header panel color ($black-deep).
+#android_chrome_color: "#222"
 android_chrome_color: "#222"
 
 # Custom Logo.
@@ -345,7 +346,7 @@ font:
   logo:
     external: true
     family:
-    size:
+    size: 
 
   # Font settings for <code> and code blocks.
   codes:
@@ -575,7 +576,7 @@ busuanzi_count:
   enable: true
   # custom uv span for the whole site
   #<i class="fa fa-user"></i>
-  site_uv: false
+  site_uv: true
   site_uv_header: 本站访客数
   site_uv_footer: 次
   # custom pv span for the whole site
