@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Liompei</title>
+	<script src="http://ozajkw49r.bkt.clouddn.com/jquery.min.js"> </script>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!---- start-smoth-scrolling---->
+		<!--<script type="text/javascript" src="js/move-top.js"></script>
+		<script type="text/javascript" src="js/easing.js"></script> -->
+		<script type="text/javascript" src="http://ozajkw49r.bkt.clouddn.com/move-top.js"></script>
+		<script type="text/javascript" src="http://ozajkw49r.bkt.clouddn.com/easing.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$(".scroll").click(function(event){		
+					event.preventDefault();
+					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+				});
+			});
+		</script>
+ 	<!---- start-smoth-scrolling---->
+</head>
+<body>
+<!------headerbg starts--------->
+ <div id="top-top" class="headerbg">
+	 <!------header starts--------->
+	   <div class="header">
+		 <!------container starts--------->
+			  <div class="container">
+				   <div class="logo">
+						<a href="#">Liompei</a>
+				   </div>
+				  <!------Navigation starts--------->
+				  <div class="nav">
+					 <ul>
+						 <li><a class="scroll" href="#about">关于工作</a></li>
+						 <li><a class="scroll" href="#skills">技能</a></li>
+						 <li><a class="scroll" href="#port">作品</a></li>
+						 <li><a class="scroll" href="#contact">联系我</a></li>
+					 </ul>
+				 </div>
+				  <!------Navigation ends-------->
+					<div class="clear"></div>
+			  </div>
+		 <!------container ends--------->
+	   </div>
+	 <!------header ends--------->
+	 <!------Banner starts--------->
+	   <div class="banner">
+	      <div class="container">
+		     <div class="banner-info">
+			      <div class="bannerlogo">
+					  <img src="images/diamond.png">
+			      </div>
+			      <div class="bannerhead">
+				      <h2>我是 <span>贝黎明</span></h2>
+				      <h3>Android 开发工程师</h3>
+				      <p>我目前在北京,兴趣爱好广泛,主要有读书,音乐,时尚,美剧,科幻,Dota,吃鸡...</p>
+					  <a class="downarrow scroll" href="#about"><span> </span></a>
+			      </div>
+			 </div>
+			 <div class="clear"></div>
+		  </div>
+	  </div>
+	  <!------Banner ends-------->
+ </div>
+ <!------Headerbg ends-------->
+ <!------Content starts--------->
+ <div class="content">
+	 <!------About starts--------->
+	   <div id="about" class="about">
+		 <div class="container">
+			   <div class="header-section text-center">
+				  <h2><span> </span>关于工作<span> </span></h2>
+				  </div>
+				 <span><p>我在以下公司担任过开发工程师</p></span>
+					 
+			  <div class="years">	 
+				<h4><b>2015.9-2016.7</b></h4>
+				 <span><h4>郑州峰华铁信股份有限公司</h4></span>
+				 <p></p><h3>独立负责郑州客运段生产信息调度系统的开发,和客运指挥系统客户端的维护</h3><p></p>
+			  </div> 
+				
+			  <div class="years">	 		
+				 <h4><b>2016.8-至今</b></h4>
+				 <span><h4>北京乐兔</h4></span>
+				<p></p><h3>独立负责影脉直播App开发</h3><p></p>
+			  </div> 
+					
+			   <!-- <div class="years">	 	
+				 <h4><b>2013</b></h4>
+				 <span><h4>Owner Alternative Labs</h4></span>
+				 <div class="labs">
+					 <p><i>Lorem Ipsum. Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin,
+						lorem quis bibendum auctor,nisi elit consequat ipsum,nec sagittis sem nibh id elit.Duis.
+						sed odio sit amet nibh vulputate cursus a sit amet mauris. Morbi accumsan ipsum velit. Nam nec teltus</i></p>
+			     </div>
+				 -->
+			  </div>
+				 <a class="arrow scroll" href="#skills"><span> </span></a>
+		  </div>
+	  </div>
+	 <!------About Ends--------->
+	 
+	<!------SKILLS Starts--------->
+	  <div id="skills" class="skills">
+	  <div class="container">
+	     <div class="skills-grids">
+			  <div class="skill-section text-center">
+				  <h2><span> </span>擅长<span> </span></h2>
+			  </div>
+					  <div class="services_grids">
+						  <div id="canvas">
+								<div class="skill-grids text-center">
+										<div class="col-md-3">	
+											<div class="skill-grid">
+												<div class="circle" id="circles-1"></div>									
+												 <h3>Product</h3>	
+											 </div>								  
+										</div>
+										<div class="col-md-3">	
+											<div class="skill-grid">
+												<div class="circle" id="circles-2"></div>									
+												 <h3>Android</h3>	
+											 </div>								  
+										</div>
+										<div class="col-md-3">	
+											<div class="skill-grid">
+												<div class="circle" id="circles-3"></div>									
+												 <h3>Fiddler</h3>	
+											 </div>								  
+										</div>
+										<div class="col-md-3">	
+											<div class="skill-grid">
+												<div class="circle" id="circles-4"></div>									
+												 <h3>Kotlin</h3>	
+											 </div>								  
+										</div>
+										<div class="clearfix"> </div>
+								  </div>
+						   </div>
+					  </div>
+					<!---->
+					 <!-- <script type="text/javascript" src="js/circles.js"></script> -->
+					 <script type="text/javascript" src="http://ozajkw49r.bkt.clouddn.com/circles.js"></script>
+								 <script>
+									var colors = [
+											['#181115', '#30222A'], ['#181115', '#30222A'], ['#181115', '#30222A'], ['#181115', '#30222A']
+										];
+							
+									
+								//for (var i = 1; i <= 5; i++) {
+									//	var child = document.getElementById('circles-' + i),
+										//	percentage = 60 - (i * 10);
+											
+									//	Circles.create({
+										//	id:         child.id,
+											//percentage: percentage,
+											//radius:     80,
+											//width:      15,
+											//number:   	percentage ,
+											//text:       '%',
+											//colors:     colors[i - 1]
+										//});
+									//} -->
+									Circles.create({
+											id:         document.getElementById('circles-' + 1).id,
+											percentage: 40,
+											radius:     80,
+											width:      15,
+											number:   	40 ,
+											text:       '%',
+											colors:     colors[0]});
+												Circles.create({
+											id:         document.getElementById('circles-' + 2).id,
+											percentage: 50,
+											radius:     80,
+											width:      15,
+											number:   	50 ,
+											text:       '%',
+											colors:     colors[0]});
+												Circles.create({
+											id:         document.getElementById('circles-' + 3).id,
+											percentage: 40,
+											radius:     80,
+											width:      15,
+											number:   	40 ,
+											text:       '%',
+											colors:     colors[0]});
+												Circles.create({
+											id:         document.getElementById('circles-' + 4).id,
+											percentage: 20,
+											radius:     80,
+											width:      15,
+											number:   	20 ,
+											text:       '%',
+											colors:     colors[0]});
+							
+					</script>
+					
+					<!--/-->
+			 </div>
+		 </div>
+		   <a class="down scroll" href="#port"><span> </span></a>
+	  </div>
+	  
+	 <!------SKILLS Ends--------->
+		 <!------PORTFOLIO Starts--------->
+		 <div id="port" class="Portfolio">
+			  <div class="Portfolio-section text-center">
+			      <h2><span> </span>展示<span> </span></h2>
+			  </div>
+			  <div class="container">
+				  <div class="portfolio-grids">
+					  <div class="portfolio-grid col-md-4">
+						 <a href="#"><img src="images/monitr1.png"></a>
+						  <p>影脉直播</p>
+						  <a class="rightarrow" href="#"><span> </span></a>
+					  </div>
+					  <div class="portfolio-grid col-md-4">
+						  <a href="#"><img src="images/monitr2.png"></a>
+						  <p>仿煎蛋App</p>
+						  <a class="rightarrow" href="#"><span> </span></a>
+					  </div>
+					  <div class="portfolio-grid col-md-4">
+						  <a href="#"><img src="images/monitr3.png"></a>
+						  <p>时代巴士</p>
+						  <a class="rightarrow" href="#"><span> </span></a>
+					  </div>
+					  <div class="clear"> </div>
+				  </div>
+				  <a class="portdown scroll" href="#contact"><span> </span></a>
+				  
+			  </div>
+		 </div>
+  
+  <!------Content Ends-------->
+  <script>
+function(obj){
+    obj.src="2.jpg";
+}
+</script>
+  <!------FOOTER Starts----------->
+  <div id="contact" class="footer">
+      <div class="container">
+	  
+		   <div class="contact-section text-center">
+			  <h2><span> </span>联系方式<span> </span></h2>
+		  </div>
+		 <div class="row">
+		 
+			 <div class="contact-section text-center">
+				  <div class="contact-section text-center" style="margin-bottom:50px">
+						<div class="social-icons" style="margin:50px">
+						   <a href="https://github.com/liompei" target="_blank" rel="noopener"><img src="images/github.png"></a>
+						   <a style="margin:150px" href="http://weibo.com/beiliming" target="_blank" rel="noopener"><img src="images/weibo.png"></a>
+						   <a href="mailto:newbeiliming@gmail.com" target="_blank" rel="noopener"><img src="images/email.png"></a>
+					   </div>
+					   <p style="color:#9E9E9E;margin-bottom:50px">你可以通过以上方式联系我,或者发送邮件给我</p>
+				  </div>
+			 </div>
+			  
+			  <div class="contact-section text-center">
+				  <div class="footer-center" style="margin-bottom:50px">
+				 <a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=2Onp6_-u4ezh6eqYqan2u7e1" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_02.png"></a>
+				  </div>
+			
+				  <div class="clear"></div>
+				 
+				  <div class="fixed" style="color:#BDBDBD">Copyright &copy; 贝黎明 2017 这只是个开始</div>
+			  </div>
+		 </div>
+	 </div>
+	 <a class="up scroll" href="#top-top"><span> </span></a>
+ </div>
+ 
+
+</body>
+</html>

@@ -1,0 +1,1287 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="网络," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。 HTTP 是应用层协议，当你上网浏览网页的时候，浏览器和 web 服务器之间就会通过 HTTP 在 Internet 上进行数据的发送和接收。 HTTP 是一个基于请求/响应模式的、无状态的协议。即我们通常所说的 Request/Response Http协议的主要特点 默认端">
+<meta name="keywords" content="网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解一点HTTP的知识">
+<meta property="og:url" content="http://liompei.com/2017/11/16/了解一点HTTP的知识/index.html">
+<meta property="og:site_name" content="Liompei">
+<meta property="og:description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。 HTTP 是应用层协议，当你上网浏览网页的时候，浏览器和 web 服务器之间就会通过 HTTP 在 Internet 上进行数据的发送和接收。 HTTP 是一个基于请求/响应模式的、无状态的协议。即我们通常所说的 Request/Response Http协议的主要特点 默认端">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://liompei.com/images/pasted-4.png">
+<meta property="og:image" content="http://liompei.com/images/pasted-5.png">
+<meta property="og:updated_time" content="2018-03-04T12:08:34.743Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="了解一点HTTP的知识">
+<meta name="twitter:description" content="超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。 HTTP 是应用层协议，当你上网浏览网页的时候，浏览器和 web 服务器之间就会通过 HTTP 在 Internet 上进行数据的发送和接收。 HTTP 是一个基于请求/响应模式的、无状态的协议。即我们通常所说的 Request/Response Http协议的主要特点 默认端">
+<meta name="twitter:image" content="http://liompei.com/images/pasted-4.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liompei.com/2017/11/16/了解一点HTTP的知识/"/>
+
+
+
+
+
+  <title>了解一点HTTP的知识 | Liompei</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-101478140-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4a4417dd78741c360a30fbd9fabaab42";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liompei</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">liompei</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-websites">
+          <a href="/websites/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            常用网站
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liompei.com/2017/11/16/了解一点HTTP的知识/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liompei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.0.1080.1080.180/005HWyMcjw8ewybdzgsmaj30u00u0acv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liompei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">了解一点HTTP的知识</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-16T12:53:00+08:00">
+                2017-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/基础知识/" itemprop="url" rel="index">
+                    <span itemprop="name">基础知识</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/16/了解一点HTTP的知识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/16/了解一点HTTP的知识/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/16/了解一点HTTP的知识/" class="leancloud_visitors" data-flag-title="了解一点HTTP的知识">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>超文本传输协议（HTTP，HyperText Transfer Protocol)是互联网上应用最为广泛的一种网络协议。</p>
+<p>HTTP 是应用层协议，当你上网浏览网页的时候，浏览器和 web 服务器之间就会通过 HTTP 在 Internet 上进行数据的发送和接收。</p>
+<p>HTTP 是一个基于请求/响应模式的、无状态的协议。即我们通常所说的 Request/Response</p>
+<h3 id="Http协议的主要特点"><a href="#Http协议的主要特点" class="headerlink" title="Http协议的主要特点"></a>Http协议的主要特点</h3><ul>
+<li>默认端口:80</li>
+</ul>
+<ol>
+<li>支持客户端/服务器模式</li>
+<li>简单快速: 客户向服务器请求服务时,只需传送请求方式和路径</li>
+<li>灵活: 允许传输任意类型的数据对象.由Content-Type加以标记</li>
+<li>无连接: 每次相应一个请求,响应完成以后就断开连接</li>
+<li>无状态: 服务器不保存浏览器的任何信息,每次提交的请求之间没有关联</li>
+</ol>
+<h3 id="Http协议版本"><a href="#Http协议版本" class="headerlink" title="Http协议版本"></a>Http协议版本</h3><ul>
+<li>0.9 :已过时。只接受 GET 一种请求方法，没有在通讯中指定版本号，且不支持请求头。由于该版本不支持 POST 方法，所以客户端无法向服务器传递太多信息。</li>
+<li>HTTP/1.0 :这是第一个在通讯中指定版本号的HTTP 协议版本，至今仍被广泛采用，特别是在代理服务器中。</li>
+<li>HTTP/1.1 :持久连接被默认采用，并能很好地配合代理服务器工作。还支持以管道方式同时发送多个请求，以便降低线路负载，提高传输速度。</li>
+<li>HTTP 2.0 :大幅度的提升了 web 性能。在与 HTTP/1.1 完全语义兼容的基础上，进一步减少了网络延迟。</li>
+</ul>
+<h4 id="HTTP1-1和HTTP1-0的区别"><a href="#HTTP1-1和HTTP1-0的区别" class="headerlink" title="HTTP1.1和HTTP1.0的区别"></a>HTTP1.1和HTTP1.0的区别</h4><ol>
+<li>缓存处理</li>
+<li>带宽优化及网络连接的使用</li>
+<li>错误通知的管理</li>
+<li>消息在网络中的发送</li>
+<li>互联网地址的维护</li>
+<li>安全性及完整性</li>
+</ol>
+<h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>URL（Uniform Resource Locator）是统一资源定位符的简称，有时候也被俗称为网页地址（网址），如同是网络上的门牌，是因特网上标准的资源的地址</p>
+<h4 id="基本组成"><a href="#基本组成" class="headerlink" title="基本组成"></a>基本组成</h4><p>通用的格式：schema://host[:port#]/path/…/[?query-string][#anchor]<br></p>
+<hr>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">schema</td>
+<td style="text-align:left">访问服务器以获取资源时要使用哪种协议,比如http,https,ftp等</td>
+</tr>
+<tr>
+<td style="text-align:left">host</td>
+<td style="text-align:left">服务器的IP地址或域名,如<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">port</td>
+<td style="text-align:left">HTTP服务器的默认端口是80,可以省略,如果使用了别的端口,必须指明</td>
+</tr>
+<tr>
+<td style="text-align:left">path</td>
+<td style="text-align:left">访问资源的路径</td>
+</tr>
+<tr>
+<td style="text-align:left">query-string</td>
+<td style="text-align:left">发给http服务器的数据</td>
+</tr>
+<tr>
+<td style="text-align:left">anchor</td>
+<td style="text-align:left">锚</td>
+</tr>
+</tbody>
+</table>
+<p>例如:<br><img src="\images\pasted-4.png" alt="upload successful"></p>
+<h3 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h3><p>http的请求分为三个部分: 请求行,请求头,请求体</p>
+<p><img src="\images\pasted-5.png" alt="upload successful"></p>
+<h4 id="1-请求行"><a href="#1-请求行" class="headerlink" title="1.请求行"></a>1.请求行</h4><p>请求行（Request line）分为三个部分：请求方法、请求地址和协议版本</p>
+<h5 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h5><p>HTTP/1.1 协议中共定义了八种方法（也叫“动作”）来以不同的方式操作指定的资源</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">方法名</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">GET</td>
+<td style="text-align:left">向指定的资源发出“显示”请求，使用 GET 方法应该只用在读取数据上，而不应该用于产生“副作用”的操作中</td>
+</tr>
+<tr>
+<td style="text-align:left">POST</td>
+<td style="text-align:left">指定资源提交数据，请求服务器进行处理（例如提交表单或者上传文件）。数据被包含在请求文本中。这个请求可能会创建新的资源或者修改现有资源，或两者皆有。</td>
+</tr>
+<tr>
+<td style="text-align:left">PUT</td>
+<td style="text-align:left">向指定资源位置上传其最新内容</td>
+</tr>
+<tr>
+<td style="text-align:left">DELETE</td>
+<td style="text-align:left">请求服务器删除 Request-URI 所标识的资源</td>
+</tr>
+<tr>
+<td style="text-align:left">OPTIONS</td>
+<td style="text-align:left">使服务器传回该资源所支持的所有HTTP请求方法。用<code>*</code>来代替资源名称，向 Web 服务器发送 OPTIONS 请求，可以测试服务器功能是否正常运作</td>
+</tr>
+<tr>
+<td style="text-align:left">HEAD</td>
+<td style="text-align:left">与 GET 方法一样，都是向服务器发出指定资源的请求，只不过服务器将不传回资源的本文部分，它的好处在于，使用这个方法可以在不必传输全部内容的情况下，就可以获取其中关于该资源的信息（原信息或称元数据）</td>
+</tr>
+<tr>
+<td style="text-align:left">TRACE</td>
+<td style="text-align:left">显示服务器收到的请求，主要用于测试或诊断</td>
+</tr>
+<tr>
+<td style="text-align:left">CONNECT</td>
+<td style="text-align:left">HTTP/1.1 中预留给能够将连接改为通道方式的代理服务器。通常用于 SSL 加密服务器的链接（经由非加密的 HTTP 代理服务器）</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>其中，最常见的是 GET 和 POST 方法，如果是 RESful 接口的话一般会用到 PUT、DELETE、GET、POST（分别对应增删查改）</li>
+</ul>
+<h5 id="POST和GET的区别"><a href="#POST和GET的区别" class="headerlink" title="POST和GET的区别"></a>POST和GET的区别</h5><table>
+<thead>
+<tr>
+<th>Post</th>
+<th>Get</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Post一般用于更新或者添加资源信息</td>
+<td>Get一般用于查询操作，而且应该是安全和幂等的</td>
+</tr>
+<tr>
+<td>Post更加安全</td>
+<td>Get会把请求的信息放到URL的后面</td>
+</tr>
+<tr>
+<td>Post传输量一般无大小限制</td>
+<td>Get不能大于2KB</td>
+</tr>
+<tr>
+<td>Post执行效率低</td>
+<td>Get执行效率略高</td>
+</tr>
+</tbody>
+</table>
+<h4 id="2-请求头Header"><a href="#2-请求头Header" class="headerlink" title="2.请求头Header"></a>2.请求头Header</h4><p>请求头可用于传递一些附加信息，格式为：键: 值，注意冒号后面有一个空格</p>
+<p>请求和响应常见通用的 Header</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">名称</th>
+<th style="text-align:left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Content-Type</td>
+<td style="text-align:left">请求体/响应体的类型，如：text/plain、application/json</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept</td>
+<td style="text-align:left">说明接收的类型，可以多个值，用,(英文逗号)分开</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-length</td>
+<td style="text-align:left">请求体/响应体的长度，单位字节</td>
+</tr>
+<tr>
+<td style="text-align:left">Content-Encoding</td>
+<td style="text-align:left">请求体/响应体的编码格式，如 gzip、deflate</td>
+</tr>
+<tr>
+<td style="text-align:left">Accept-Encoding</td>
+<td style="text-align:left">告知对方我方接受的 Content-Encoding</td>
+</tr>
+<tr>
+<td style="text-align:left">ETag</td>
+<td style="text-align:left">给当前资源的标识，和Last-Modified、If-None-Match、If-Modified-Since配合，用于缓存控制</td>
+</tr>
+<tr>
+<td style="text-align:left">Cache-Control</td>
+<td style="text-align:left">取值一般为no-cache、max-age=xx，xx为整数，表示资源缓存有效期（秒）</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常见的请求Request Header</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authorization</td>
+<td>用于设置身份认证信息</td>
+</tr>
+<tr>
+<td>User-Agent</td>
+<td>用户标识，如：OS 和浏览器的类型和版本</td>
+</tr>
+<tr>
+<td>If-Modified-Since</td>
+<td>值为上一次服务器返回的<code>Last-Modified</code>值，用于确定某个资源是否被更改过，没有更改过就从缓存中读取</td>
+</tr>
+<tr>
+<td>If-None-Match</td>
+<td>值为上一次服务器返回的 ETag 值，一般会和<code>If-Modified-Since</code></td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>已有的Cookie</td>
+</tr>
+<tr>
+<td>Referer</td>
+<td>标识请求引用自哪个地址，比如你从页面 A 跳转到页面 B 时，值为页面 A 的地址</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求的主机和端口号</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常见的响应头Response Header</strong></p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Date</td>
+<td>服务器的日期</td>
+</tr>
+<tr>
+<td>Last-Modified</td>
+<td>该资源最后被修改的时间</td>
+</tr>
+<tr>
+<td>Transfer-Encoding</td>
+<td>取值一般为 chunked，出现在 Content-Length 不能确定的情况下，表示服务器不知道响应板体的数据大小，一般同时出现<code>Content-Encoding</code>响应头</td>
+</tr>
+<tr>
+<td>Set-Cookie</td>
+<td>设置 Cookie</td>
+</tr>
+<tr>
+<td>Location</td>
+<td>重定向到另一个 URL，如输入浏览器就输入 baidu.com 回车，会自动跳转到<a href="http://www.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 就是通过这个响应头控制的</td>
+</tr>
+<tr>
+<td>Server</td>
+<td>后台服务器</td>
+</tr>
+</tbody>
+</table>
+<h3 id="为什么POST效率低，Get效率高"><a href="#为什么POST效率低，Get效率高" class="headerlink" title="为什么POST效率低，Get效率高"></a>为什么POST效率低，Get效率高</h3><ul>
+<li>Get将参数拼成URL,放到header消息头里传递</li>
+<li>Post直接以键值对的形式放到消息体中传递。</li>
+<li>但两者的效率差距很小很小</li>
+</ul>
+<h3 id="Https"><a href="#Https" class="headerlink" title="Https"></a>Https</h3><ul>
+<li>端口号是443</li>
+<li>是由SSL+Http协议构建的可进行加密传输、身份认证的网络协议。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/网络/" rel="tag"># 网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/TCPIP_UDP协议详解/" rel="next" title="TCP/IP,UDP协议详解">
+                <i class="fa fa-chevron-left"></i> TCP/IP,UDP协议详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/16/json解析之JSONObject/" rel="prev" title="【 json解析】之JSONObject和JSONArray">
+                【 json解析】之JSONObject和JSONArray <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.0.1080.1080.180/005HWyMcjw8ewybdzgsmaj30u00u0acv.jpg"
+                alt="liompei" />
+            
+              <p class="site-author-name" itemprop="name">liompei</p>
+              <p class="site-description motion-element" itemprop="description">Developer for everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/liompei" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/beiliming" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/beiliming" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:newbeiliming@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bezier.method.ac/" title="Bezier Game" target="_blank">Bezier Game</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://liuwangshu.cn/" title="liuwangshu" target="_blank">liuwangshu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Http协议的主要特点"><span class="nav-number">1.</span> <span class="nav-text">Http协议的主要特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Http协议版本"><span class="nav-number">2.</span> <span class="nav-text">Http协议版本</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP1-1和HTTP1-0的区别"><span class="nav-number">2.1.</span> <span class="nav-text">HTTP1.1和HTTP1.0的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL"><span class="nav-number">3.</span> <span class="nav-text">URL</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本组成"><span class="nav-number">3.1.</span> <span class="nav-text">基本组成</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP请求"><span class="nav-number">4.</span> <span class="nav-text">HTTP请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-请求行"><span class="nav-number">4.1.</span> <span class="nav-text">1.请求行</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#请求方法"><span class="nav-number">4.1.1.</span> <span class="nav-text">请求方法</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#POST和GET的区别"><span class="nav-number">4.1.2.</span> <span class="nav-text">POST和GET的区别</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-请求头Header"><span class="nav-number">4.2.</span> <span class="nav-text">2.请求头Header</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么POST效率低，Get效率高"><span class="nav-number">5.</span> <span class="nav-text">为什么POST效率低，Get效率高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Https"><span class="nav-number">6.</span> <span class="nav-text">Https</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liompei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liompei-com.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://liompei.com/2017/11/16/了解一点HTTP的知识/';
+          this.page.identifier = '2017/11/16/了解一点HTTP的知识/';
+          this.page.title = '了解一点HTTP的知识';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liompei-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S4Hf5HbtWou0ro2uNzyIjgIW-gzGzoHsz", "ilsRsFJkayKSdzHBrNwVw2at");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

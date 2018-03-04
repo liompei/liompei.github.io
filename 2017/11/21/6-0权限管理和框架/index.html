@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="现在Android6.0以上系统的手机都需要申请权限啦.开发者再也不能随意的上传用户的手机信息,不能随意的拿到存储空间,通讯录等信息了,此时就需要对权限做一次申请,当用户同意后才可进行操作. 由于每个Android应用程序都在一个进程沙箱中运行，因此应用程序必须明确请求访问其沙箱外的资源和数据。他们通过声明他们所需的权限来申请这个访问权限，以获得基本沙箱不提供的附加功能。根据区域的敏感程度，系统可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.0权限管理和框架">
+<meta property="og:url" content="http://liompei.com/2017/11/21/6-0权限管理和框架/index.html">
+<meta property="og:site_name" content="Liompei">
+<meta property="og:description" content="现在Android6.0以上系统的手机都需要申请权限啦.开发者再也不能随意的上传用户的手机信息,不能随意的拿到存储空间,通讯录等信息了,此时就需要对权限做一次申请,当用户同意后才可进行操作. 由于每个Android应用程序都在一个进程沙箱中运行，因此应用程序必须明确请求访问其沙箱外的资源和数据。他们通过声明他们所需的权限来申请这个访问权限，以获得基本沙箱不提供的附加功能。根据区域的敏感程度，系统可">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-04T12:08:34.707Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="6.0权限管理和框架">
+<meta name="twitter:description" content="现在Android6.0以上系统的手机都需要申请权限啦.开发者再也不能随意的上传用户的手机信息,不能随意的拿到存储空间,通讯录等信息了,此时就需要对权限做一次申请,当用户同意后才可进行操作. 由于每个Android应用程序都在一个进程沙箱中运行，因此应用程序必须明确请求访问其沙箱外的资源和数据。他们通过声明他们所需的权限来申请这个访问权限，以获得基本沙箱不提供的附加功能。根据区域的敏感程度，系统可">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://liompei.com/2017/11/21/6-0权限管理和框架/"/>
+
+
+
+
+
+  <title>6.0权限管理和框架 | Liompei</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-101478140-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?4a4417dd78741c360a30fbd9fabaab42";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Liompei</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">liompei</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-websites">
+          <a href="/websites/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            常用网站
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/about.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://liompei.com/2017/11/21/6-0权限管理和框架/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="liompei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://tva2.sinaimg.cn/crop.0.0.1080.1080.180/005HWyMcjw8ewybdzgsmaj30u00u0acv.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Liompei">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">6.0权限管理和框架</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T19:35:58+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/11/21/6-0权限管理和框架/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/11/21/6-0权限管理和框架/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/11/21/6-0权限管理和框架/" class="leancloud_visitors" data-flag-title="6.0权限管理和框架">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在Android6.0以上系统的手机都需要申请权限啦.开发者再也不能随意的上传用户的手机信息,不能随意的拿到存储空间,通讯录等信息了,此时就需要对权限做一次申请,当用户同意后才可进行操作.</p>
+<p>由于每个Android应用程序都在一个进程沙箱中运行，因此应用程序必须明确请求访问其沙箱外的资源和数据。他们通过声明他们所需的权限来申请这个访问权限，以获得基本沙箱不提供的附加功能。根据区域的敏感程度，系统可以自动授予权限，也可以提示用户批准或拒绝请求。</p>
+<p>Google官方权限介绍 <a href="https://developer.android.google.cn/guide/topics/permissions/requesting.html#permissions" target="_blank" rel="noopener">https://developer.android.google.cn/guide/topics/permissions/requesting.html#permissions</a></p>
+<h3 id="权限组"><a href="#权限组" class="headerlink" title="权限组"></a>权限组</h3><h4 id="普通权限-PROTECTION-NORMAL"><a href="#普通权限-PROTECTION-NORMAL" class="headerlink" title="普通权限(PROTECTION_NORMAL)"></a>普通权限(PROTECTION_NORMAL)</h4><p>普通权限可以直接在清单文件<code>Manifast</code>中注册即用,从API级别23开始，以下权限分类为PROTECTION_NORMAL：以下为普通权限:</p>
+<table>
+<thead>
+<tr>
+<th>权限</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ACCESS_LOCATION_EXTRA_COMMANDS</td>
+<td>允许应用程序访问额外的位置提供程序命令。</td>
+</tr>
+<tr>
+<td>ACCESS_NETWORK_STATE</td>
+<td>允许应用程序访问有关网络的信息。</td>
+</tr>
+<tr>
+<td>ACCESS_NOTIFICATION_POLICY</td>
+<td>对希望访问通知政策的应用程序的标记许可。</td>
+</tr>
+<tr>
+<td>ACCESS_WIFI_STATE</td>
+<td>允许应用程式存取有关Wi-Fi网路的资讯。</td>
+</tr>
+<tr>
+<td>BLUETOOTH</td>
+<td>允许应用程序连接到配对的蓝牙设备。</td>
+</tr>
+<tr>
+<td>BLUETOOTH_ADMIN</td>
+<td>允许应用程式发现并配对蓝牙装置。</td>
+</tr>
+<tr>
+<td>BROADCAST_STICKY</td>
+<td>允许应用程式广播粘性意图。</td>
+</tr>
+<tr>
+<td>CHANGE_NETWORK_STATE</td>
+<td>允许应用程序更改网络连接状态。</td>
+</tr>
+<tr>
+<td>CHANGE_WIFI_MULTICAST_STATE</td>
+<td>允许应用程序进入Wi-Fi多播模式。</td>
+</tr>
+<tr>
+<td>CHANGE_WIFI_STATE</td>
+<td>允许应用程式更改Wi-Fi连线状态。</td>
+</tr>
+<tr>
+<td>DISABLE_KEYGUARD</td>
+<td>允许应用程序在不安全的情况下禁用键盘锁。</td>
+</tr>
+<tr>
+<td>EXPAND_STATUS_BAR</td>
+<td>允许应用程序展开或折叠状态栏。</td>
+</tr>
+<tr>
+<td>GET_PACKAGE_SIZE</td>
+<td>允许应用程序查找任何包使用的空间。</td>
+</tr>
+<tr>
+<td>INSTALL_SHORTCUT</td>
+<td>允许应用程序在Launcher中安装快捷方式。</td>
+</tr>
+<tr>
+<td>INTERNET</td>
+<td>允许应用程序使用网络。</td>
+</tr>
+<tr>
+<td>KILL_BACKGROUND_PROCESSES</td>
+<td>允许应用程序调用 killBackgroundProcesses(String)。</td>
+</tr>
+<tr>
+<td>MODIFY_AUDIO_SETTINGS</td>
+<td>允许应用修改全局音频设置。</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>允许应用程序通过NFC执行I / O操作。</td>
+</tr>
+<tr>
+<td>READ_SYNC_SETTINGS</td>
+<td>允许应用程式读取同步设定。</td>
+</tr>
+<tr>
+<td>READ_SYNC_STATS</td>
+<td>允许应用程序读取同步统计信息。</td>
+</tr>
+<tr>
+<td>RECEIVE_BOOT_COMPLETED</td>
+<td>允许应用程序ACTION_BOOT_COMPLETED在系统完成启动后接收 广播。</td>
+</tr>
+<tr>
+<td>REORDER_TASKS</td>
+<td>允许应用程序更改任务的Z顺序。</td>
+</tr>
+<tr>
+<td>REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</td>
+<td>应用程序必须持有许可才能使用 ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS。</td>
+</tr>
+<tr>
+<td>REQUEST_INSTALL_PACKAGES</td>
+<td>允许应用程序请求安装软件包。</td>
+</tr>
+<tr>
+<td>SET_ALARM</td>
+<td>允许应用程序广播一个意图为用户设置警报。</td>
+</tr>
+<tr>
+<td>SET_TIME_ZONE</td>
+<td>允许应用程序设置系统时区。</td>
+</tr>
+<tr>
+<td>SET_WALLPAPER</td>
+<td>允许应用程式设定墙纸。</td>
+</tr>
+<tr>
+<td>SET_WALLPAPER_HINTS</td>
+<td>允许应用程式设定壁纸提示。</td>
+</tr>
+<tr>
+<td>TRANSMIT_IR</td>
+<td>允许使用设备的红外发射器（如果有的话）。</td>
+</tr>
+<tr>
+<td>UNINSTALL_SHORTCUT</td>
+<td>此权限不再受支持。</td>
+</tr>
+<tr>
+<td>USE_FINGERPRINT</td>
+<td>允许应用使用指纹硬件。</td>
+</tr>
+<tr>
+<td>VIBRATE</td>
+<td>允许访问振动器。</td>
+</tr>
+<tr>
+<td>WAKE_LOCK</td>
+<td>允许使用电源管理器唤醒锁定功能，让处理器免于睡眠或屏幕变暗。</td>
+</tr>
+<tr>
+<td>WRITE_SYNC_SETTINGS</td>
+<td>允许应用程式写入同步设定。</td>
+</tr>
+</tbody>
+</table>
+<p>这些权限直接写到清单文件中即可使用,</p>
+<h4 id="危险权限和权限组-Dangerous-permissions-and-permission-groups"><a href="#危险权限和权限组-Dangerous-permissions-and-permission-groups" class="headerlink" title="危险权限和权限组(Dangerous permissions and permission groups)"></a>危险权限和权限组(Dangerous permissions and permission groups)</h4><p>权限组中的权限只需申请一个即可使用权限组内其他权限,但是一样的需要在<code>Manifast</code>中注册</p>
+<table>
+<thead>
+<tr>
+<th>权限组</th>
+<th>权限</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CALENDAR</td>
+<td>• READ_CALENDAR<br>• WRITE_CALENDAR</td>
+<td>• 用于与用户日历相关的运行时权限。</td>
+</tr>
+<tr>
+<td>CAMERA</td>
+<td>• CAMERA</td>
+<td>• 用于与访问摄像头或从设备捕捉图像/视频相关联的权限。</td>
+</tr>
+<tr>
+<td>CONTACTS</td>
+<td>• READ_CONTACTS<br>• WRITE_CONTACTS<br>• GET_ACCOUNTS</td>
+<td>• 用于与此设备上的联系人和配置文件相关的运行时权限。</td>
+</tr>
+<tr>
+<td>LOCATION</td>
+<td>• ACCESS_FINE_LOCATION<br>• ACCESS_COARSE_LOCATION</td>
+<td>• 用于允许访问设备位置的权限。</td>
+</tr>
+<tr>
+<td>MICROPHONE</td>
+<td>• RECORD_AUDIO</td>
+<td>• 用于与从设备访问麦克风音频相关联的权限。</td>
+</tr>
+<tr>
+<td>PHONE</td>
+<td>• READ_PHONE_STATE<br>• READ_PHONE_NUMBERS<br>• CALL_PHONE<br>• ANSWER_PHONE_CALLS（必须在运行时请求）<br>• READ_CALL_LOG<br>• WRITE_CALL_LOG<br>• ADD_VOICEMAIL<br>• USE_SIP<br>• PROCESS_OUTGOING_CALLS</td>
+<td>• 用于与电话功能关联的权限。</td>
+</tr>
+<tr>
+<td>SENSORS</td>
+<td>• BODY_SENSORS</td>
+<td>• 用于与访问摄像头或从设备捕捉图像/视频相关联的权限。</td>
+</tr>
+<tr>
+<td>SMS</td>
+<td>• SEND_SMS<br>• RECEIVE_SMS<br>• READ_SMS<br>• RECEIVE_WAP_PUSH<br>• RECEIVE_MMS</td>
+<td>• 用于与用户的SMS消息相关的运行时权限。</td>
+</tr>
+<tr>
+<td>STORAGE</td>
+<td>• READ_EXTERNAL_STORAGE<br>• WRITE_EXTERNAL_STORAGE</td>
+<td>• 用于与共享外部存储相关的运行时权限。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="权限申请"><a href="#权限申请" class="headerlink" title="权限申请"></a>权限申请</h3><h4 id="单个权限申请"><a href="#单个权限申请" class="headerlink" title="单个权限申请"></a>单个权限申请</h4><p>我们先申请一个内部存储权限<code>READ_EXTERNAL_STORAGE</code></p>
+<ul>
+<li>首先在<code>Manifast.xml</code>中添加权限</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.READ_EXTERNAL_STORAGE"</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!--如果你还需要写入权限--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.WRITE_EXTERNAL_STORAGE"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<h5 id="检查是否拥有权限"><a href="#检查是否拥有权限" class="headerlink" title="检查是否拥有权限"></a>检查是否拥有权限</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> permissionCheck = ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);</span><br><span class="line"><span class="keyword">if</span> (permissionCheck == PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line"><span class="comment">//拥有了权限</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (permissionCheck == PackageManager.PERMISSION_DENIED) &#123;</span><br><span class="line"><span class="comment">//未拥有此权限</span></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>完整的检查权限封装<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//检查是否拥有单一权限</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">checkPermission</span><span class="params">(Activity activity, String permission)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> permissionCheck = ContextCompat.checkSelfPermission(activity, permission);</span><br><span class="line">    <span class="keyword">if</span> (permissionCheck == PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (permissionCheck == PackageManager.PERMISSION_DENIED) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h5 id="判断权限是否被拒绝过"><a href="#判断权限是否被拒绝过" class="headerlink" title="判断权限是否被拒绝过"></a>判断权限是否被拒绝过</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (ActivityCompat.shouldShowRequestPermissionRationale(activity, permission)) &#123;</span><br><span class="line">            <span class="keyword">new</span> MaterialDialog.Builder(activity)</span><br><span class="line">                    .title(<span class="string">"提示"</span>)</span><br><span class="line">                    .content(<span class="string">"你必须给予该应用权限,以保证程序的正常运行"</span>)</span><br><span class="line">                    .positiveText(<span class="string">"我知道了"</span>)</span><br><span class="line">                    .cancelable(<span class="keyword">true</span>)</span><br><span class="line">                    .canceledOnTouchOutside(<span class="keyword">false</span>)</span><br><span class="line">                    .onPositive(<span class="keyword">new</span> MaterialDialog.SingleButtonCallback() &#123;</span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">(@NonNull MaterialDialog dialog, @NonNull DialogAction which)</span> </span>&#123;</span><br><span class="line">                            ActivityCompat.requestPermissions(activity, <span class="keyword">new</span> String[]&#123;permission&#125;, MY_PERMISSION_REQUEST);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .cancelListener(<span class="keyword">new</span> DialogInterface.OnCancelListener() &#123;</span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">(DialogInterface dialogInterface)</span> </span>&#123;</span><br><span class="line">                            activity.finish();</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;)</span><br><span class="line">                    .show();</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<h5 id="权限返回状态处理"><a href="#权限返回状态处理" class="headerlink" title="权限返回状态处理"></a>权限返回状态处理</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(<span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">super</span>.onRequestPermissionsResult(requestCode, permissions, grantResults);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>requestCode是请求权限时的权限码,permissions是权限集合,单个权限的话取`permissions[0]即可</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//请求权限返回接口</span></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">onRequestPermissionsResult</span><span class="params">(Activity activity, <span class="keyword">int</span> requestCode, @NonNull String[] permissions, @NonNull <span class="keyword">int</span>[] grantResults)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (requestCode) &#123;</span><br><span class="line">        <span class="keyword">case</span> MY_PERMISSION_REQUEST:  <span class="comment">//单个权限的申请结果</span></span><br><span class="line">            <span class="comment">//如果请求被取消，结果数组为空。</span></span><br><span class="line">            <span class="keyword">if</span> (grantResults.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (grantResults[<span class="number">0</span>] == PackageManager.PERMISSION_GRANTED) &#123;</span><br><span class="line">                    <span class="comment">//同意了权限</span></span><br><span class="line">                    <span class="keyword">if</span> (mPermissionCallbacks != <span class="keyword">null</span>) &#123;</span><br><span class="line">                        mPermissionCallbacks.onPermissionsGranted(permissions);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">//未同意权限</span></span><br><span class="line">                    <span class="keyword">new</span> MaterialDialog.Builder(activity)</span><br><span class="line">                            .title(<span class="string">"警告"</span>)</span><br><span class="line">                            .content(<span class="string">"拒绝权限将导致部分功能不可用,请谨慎选择"</span>)</span><br><span class="line">                            .cancelable(<span class="keyword">true</span>)</span><br><span class="line">                            .canceledOnTouchOutside(<span class="keyword">true</span>)</span><br><span class="line">                            .cancelListener(<span class="keyword">new</span> DialogInterface.OnCancelListener() &#123;</span><br><span class="line">                                <span class="meta">@Override</span></span><br><span class="line">                                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCancel</span><span class="params">(DialogInterface dialogInterface)</span> </span>&#123;</span><br><span class="line">                                    mPermissionCallbacks.onPermissionsGranted(<span class="keyword">null</span>);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;)</span><br><span class="line">                            .show();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br></pre></td></tr></table></figure>
+<h5 id="多个权限申请思路"><a href="#多个权限申请思路" class="headerlink" title="多个权限申请思路"></a>多个权限申请思路</h5><p>要申请多个权限,可以循环判断权限是否拥有,再将没有拥有的权限添加到集合中</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String[] arr = permissionList.toArray(<span class="keyword">new</span> String[permissionList.size()]);</span><br><span class="line">ActivityCompat.requestPermissions(activity, arr, MY_PERMISSIONS_REQUEST);</span><br></pre></td></tr></table></figure>
+<p>权限的返回结果也需要进行判断</p>
+<h3 id="第三方权限申请库"><a href="#第三方权限申请库" class="headerlink" title="第三方权限申请库"></a>第三方权限申请库</h3><h4 id="RxPermisssion"><a href="#RxPermisssion" class="headerlink" title="RxPermisssion"></a>RxPermisssion</h4><p>RxPermission是一个非常好用的第三方权限申请库,由RxJava支持</p>
+<p>请在GitHub上使用最新的版本 <a href="https://github.com/tbruyelle/RxPermissions" target="_blank" rel="noopener">https://github.com/tbruyelle/RxPermissions</a></p>
+<p>Glide<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">compile &apos;com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar&apos;</span><br></pre></td></tr></table></figure></p>
+<p>初始化<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">RxPermissions rxPermissions = <span class="keyword">new</span> RxPermissions(<span class="keyword">this</span>); <span class="comment">// where this is an Activity instance</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>请求单个权限<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 必须在初始化阶段 如onCreate中</span></span><br><span class="line">rxPermissions</span><br><span class="line">    .request(Manifest.permission.CAMERA)</span><br><span class="line">    .subscribe(granted -&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (granted) &#123; <span class="comment">// Always true pre-M</span></span><br><span class="line">           <span class="comment">// 已经获取了相机权限</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// 权限被拒绝</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>注: <code>granted -&gt;</code>是Retrolambda 写法,Android Studio3.0已全面支持Java8</p>
+<ul>
+<li><p>请求多个权限并统一处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">rxPermissions</span><br><span class="line">    .request(Manifest.permission.CAMERA,</span><br><span class="line">             Manifest.permission.READ_PHONE_STATE)</span><br><span class="line">    .subscribe(granted -&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (granted) &#123;</span><br><span class="line">           <span class="comment">// 获得了所有权限</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// 并未获得所有权限</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>请求多个权限并分别判定处理</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">rxPermissions</span><br><span class="line">    .requestEach(Manifest.permission.CAMERA,</span><br><span class="line">             Manifest.permission.READ_PHONE_STATE)</span><br><span class="line">    .subscribe(permission -&gt; &#123; <span class="comment">// will emit 2 Permission objects</span></span><br><span class="line">        <span class="keyword">if</span> (permission.granted) &#123;</span><br><span class="line">           <span class="comment">// `permission.name` is granted !</span></span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (permission.shouldShowRequestPermissionRationale) &#123;</span><br><span class="line">           <span class="comment">// Denied permission without ask never again</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">// Denied permission with ask never again</span></span><br><span class="line">           <span class="comment">// Need to go to the settings</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/16/json解析之Gson/" rel="next" title="【 json解析】之Gson">
+                <i class="fa fa-chevron-left"></i> 【 json解析】之Gson
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/22/【Material-Design】CardView属性详解/" rel="prev" title="【Material Design】CardView属性详解">
+                【Material Design】CardView属性详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="https://tva2.sinaimg.cn/crop.0.0.1080.1080.180/005HWyMcjw8ewybdzgsmaj30u00u0acv.jpg"
+                alt="liompei" />
+            
+              <p class="site-author-name" itemprop="name">liompei</p>
+              <p class="site-description motion-element" itemprop="description">Developer for everything</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/liompei" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="http://weibo.com/beiliming" target="_blank" title="微博">
+                    
+                      <i class="fa fa-fw fa-globe"></i>微博</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="https://www.zhihu.com/people/beiliming" target="_blank" title="知乎">
+                    
+                      <i class="fa fa-fw fa-globe"></i>知乎</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  <a href="mailto:newbeiliming@gmail.com" target="_blank" title="E-Mail">
+                    
+                      <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-globe"></i>
+                links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://bezier.method.ac/" title="Bezier Game" target="_blank">Bezier Game</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://liuwangshu.cn/" title="liuwangshu" target="_blank">liuwangshu</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限组"><span class="nav-number">1.</span> <span class="nav-text">权限组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通权限-PROTECTION-NORMAL"><span class="nav-number">1.1.</span> <span class="nav-text">普通权限(PROTECTION_NORMAL)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#危险权限和权限组-Dangerous-permissions-and-permission-groups"><span class="nav-number">1.2.</span> <span class="nav-text">危险权限和权限组(Dangerous permissions and permission groups)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#权限申请"><span class="nav-number">2.</span> <span class="nav-text">权限申请</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单个权限申请"><span class="nav-number">2.1.</span> <span class="nav-text">单个权限申请</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#检查是否拥有权限"><span class="nav-number">2.1.1.</span> <span class="nav-text">检查是否拥有权限</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#判断权限是否被拒绝过"><span class="nav-number">2.1.2.</span> <span class="nav-text">判断权限是否被拒绝过</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#权限返回状态处理"><span class="nav-number">2.1.3.</span> <span class="nav-text">权限返回状态处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#多个权限申请思路"><span class="nav-number">2.1.4.</span> <span class="nav-text">多个权限申请思路</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三方权限申请库"><span class="nav-number">3.</span> <span class="nav-text">第三方权限申请库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RxPermisssion"><span class="nav-number">3.1.</span> <span class="nav-text">RxPermisssion</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">liompei</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.3</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      次
+    </span>
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://liompei-com.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://liompei.com/2017/11/21/6-0权限管理和框架/';
+          this.page.identifier = '2017/11/21/6-0权限管理和框架/';
+          this.page.title = '6.0权限管理和框架';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://liompei-com.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S4Hf5HbtWou0ro2uNzyIjgIW-gzGzoHsz", "ilsRsFJkayKSdzHBrNwVw2at");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
